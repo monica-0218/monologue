@@ -17,8 +17,8 @@
         {% endfor %}
         <hr>
         {{ object.content|safe }}
-        {% for i in images %}
-          <p>{{ i }}</p>
+        {% for i in image %}
+          <img class="article-img" src="/media/{{ i.image }}"></img>
         {% endfor %}
       </article>
       <article class="comment-area">

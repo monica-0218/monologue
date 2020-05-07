@@ -13,14 +13,20 @@ from django.shortcuts import render
 
 def get_pic(request):
     images = ContentImage.objects.all().order_by('-created_at')
-    print(images)
     return render(request, 'blog/post_detail.html', {'images': images})
 
 
 class PostDetailView(DetailView):
     model = Post
 
-    def get_object(self, queryset=None):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print(context['post'])
+        context['image'] = ContentImage.objects.filter(post=context['post'])
+        print(context['image'])
+        return context
+
+    def get_object(self,queryset=None):
         obj = super().get_object(queryset=queryset)
         if not obj.is_public and not self.request.user.is_authenticated:
             raise Http404
@@ -37,12 +43,9 @@ class CategoryPostView(ListView):
     model = Post
     template_name = 'blog/category_post.html'
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.category = get_object_or_404(Category, slug=category_slug)
-
     def get_queryset(self):
         category_slug = self.kwargs['category_slug']
+        self.category = get_object_or_404(Category, slug=category_slug)
         qs = super().get_queryset().filter(category=self.category)
         return qs
 
