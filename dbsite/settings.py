@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mdeditor',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,9 @@ MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+MDEDITOR_CONFIGS = {
+    'default':{
+        'language':'en'
+    }
+}

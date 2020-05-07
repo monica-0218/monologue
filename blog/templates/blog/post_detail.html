@@ -16,10 +16,13 @@
         {{ tag.name }}
         {% endfor %}
         <hr>
-        {{ object.content|safe }}
-        {% for i in image %}
-          <img class="article-img" src="/media/{{ i.image }}"></img>
-        {% endfor %}
+        {{ object.get_markdown_text_as_html|safe }}
+        <div class="article-img-outer">
+          {% for i in image %}
+          <img class="article-img" src="/media/{{ i.image }}">
+          <p>画像{{ i }}</p>
+          {% endfor %}
+        </div>
       </article>
       <article class="comment-area">
         <a class="btn btn-primary my-3" href="{% url 'blog:comment_form' post.pk %}">コメントを投稿する</a>
