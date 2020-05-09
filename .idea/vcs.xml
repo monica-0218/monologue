@@ -4,5 +4,6 @@
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Django_Bros_blog/django_blog" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/monologue" vcs="Git" />
   </component>
 </project>

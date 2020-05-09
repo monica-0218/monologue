@@ -157,3 +157,10 @@ class New(models.Model):
 
     def __str__(self):
         return self.title
+
+class Chapter(models.Model):
+  chapter_num = models.IntegerField()
+
+class Story(models.Model):
+  chapter_num = models.ForeignKey(Chapter, on_delete=models.CASCADE)
+  story_num = models.IntegerField()

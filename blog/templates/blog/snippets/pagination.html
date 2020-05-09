@@ -1,5 +1,5 @@
 {% if is_paginated %}
-<nav>
+<nav style="text-align: center; font-size: 30px;">
   {% if page_obj.has_previous %}
   <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">前へ</a>
   {% endif %}
