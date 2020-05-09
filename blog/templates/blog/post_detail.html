@@ -8,22 +8,25 @@
   <div class="row">
     <main class="col-md-8">
       <article class="blog-area">
-        <h1>{{ object.title }}</h1>
-        <p>{{ object.published_at|date }}</p>
-        <p>{{ object.category.name }}</p>
         <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post }}">
+        <h3 class="article-title">{{ object.title }}</h3>
+        <p>Date: {{ object.published_at|date }}</p>
+        <p>Category: {{ object.category.name }}</p>
         {% for tag in object.tags.all %}
-        {{ tag.name }}
+        tag: {{ tag.name }}
         {% endfor %}
         <hr>
         {{ object.get_markdown_text_as_html|safe }}
         <div class="article-img-outer">
           {% for i in image %}
-          <img class="article-img" src="/media/{{ i.image }}">
-          <p>画像{{ i }}</p>
+          <div class="article-img-inner">
+            <img class="article-img" src="/media/{{ i.image }}">
+            <p style="display: inline-block">画像{{ forloop.counter }}</p>
+          </div>
           {% endfor %}
         </div>
       </article>
+      <hr>
       <article class="comment-area">
         <a class="btn btn-primary my-3" href="{% url 'blog:comment_form' post.pk %}">コメントを投稿する</a>
         {% include "blog/snippets/comments.html" %}

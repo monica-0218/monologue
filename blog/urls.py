@@ -14,6 +14,8 @@ from blog.views import (
     ReplyFormView,
     reply_approve,
     reply_remove,
+    NewsView,
+    MemberView,
 )
 
 app_name = 'blog'
@@ -32,4 +34,6 @@ urlpatterns = [
     path('reply/<int:pk>/', ReplyFormView.as_view(), name='reply_form'),
     path('reply/<int:pk>/approve/', reply_approve, name='reply_approve'),
     path('reply/<int:pk>/remove/', reply_remove, name='reply_remove'),
+    path('news/', NewsView.as_view(), name='news'),
+    path('member/', MemberView.as_view(), name='member'),
 ]

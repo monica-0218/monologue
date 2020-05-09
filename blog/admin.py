@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from blog.models import Category, Tag, Post, ContentImage, Comment, Reply
+from blog.models import Category, Tag, Post, ContentImage, Comment, Reply, New
 
 
 class ContentImageInline(admin.TabularInline):
@@ -19,3 +19,4 @@ admin.site.register(Tag)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment)
 admin.site.register(Reply)
+admin.site.register(New)

@@ -145,3 +145,15 @@ class Reply(models.Model):
 # def comment_reply_receiver(sender, instance, created, **kwargs):
 #     if created:
 #         instance.send_email_notif()
+
+class New(models.Model):
+    title = models.CharField(max_length=255)
+    text = MDTextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def get_markdown_text_as_html2(self):
+        # MarkDown記法で書かれたtextをHTML形式に変換して返す
+        return markdown(self.text)
+
+    def __str__(self):
+        return self.title

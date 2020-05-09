@@ -1,4 +1,62 @@
 .article-img {
-    width: 47%;
-    margin: 1%;
+    width: 100%;
+}
+.logo{
+    width: 100%;
+}
+a.navbar-brand {
+    width: 100%;
+}
+.article-title {
+    margin-top: 20px;
+}
+.article-img-inner{
+    width: 49%;
+}
+.article-img-outer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.news-outer{
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    -webkit-box-shadow: 0px 0px 21px 5px rgba(0,0,0,0.44);
+    -moz-box-shadow: 0px 0px 21px 5px rgba(0,0,0,0.44);
+    box-shadow: 0px 0px 21px 5px rgba(0,0,0,0.44);
+}
+.normal-introduction,
+.reverse-introduction {
+    display: flex;
+    margin: 100px 0;
+}
+.introduction-account {
+    margin: 0 50px;
+}
+img {
+    max-width: 100%;
+}
+@media (min-width: 576px) {
+    .logo {
+        width: 100%;
+    }
+    a.navbar-brand {
+        width: 50%;
+    }
+}
+@media (max-width: 990px) {
+    /* メンバー紹介 */
+    .normal-introduction {
+        flex-direction: column;
+    }
+
+    .reverse-introduction {
+        flex-direction: column-reverse;
+    }
+
+    .introduction-account {
+        margin: 0;
+    }
 }

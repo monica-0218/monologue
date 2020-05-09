@@ -3,13 +3,28 @@ from django.db.models import Count, Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.detail import DetailView
+from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from .models import ContentImage
 from blog.forms import CommentForm, ReplyForm
-from blog.models import Post, Category, Tag, Comment, Reply
+from blog.models import Post, Category, Tag, Comment, Reply, New
 from django.shortcuts import render
 
+class MemberView(TemplateView):
+    model = Post
+    template_name = 'blog/member.html'
+
+class NewsView(TemplateView):
+    model = Post
+    template_name = 'blog/news.html'
+    paginate_by = 10
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'news_list': New.objects.all().order_by('-created_at')
+        }
+        return self.render_to_response(context)
 
 def get_pic(request):
     images = ContentImage.objects.all().order_by('-created_at')

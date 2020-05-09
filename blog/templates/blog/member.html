@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object.title }} | {{ block.super }}{% endblock %}
+{% block description %}{{ object.description }}{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="container">
+    <h1 style="text-align: center;" class="title">Monologue<br>〜メンバー紹介〜</h1>
+    <div class="normal-introduction">
+        <img src="{% static 'img/hiroki.jpg' %}">
+        <div class="introduction-account">
+            <h2>　　小野くん</h2>
+            <p>宇宙の創造神。この世の全てを愛し、<br>
+                この世の全てに愛されている。<br>
+                monologueの代表兼世界の代表であり、<br>
+                人間ならば必ず彼に従わなければならない。<br>
+                最近ある男にストーカーされており、<br>
+                その情報がこのサイトにも載っているが<br>
+                寛容な小野くんは全てを許している。</p></div>
+    </div>
+    <div class="reverse-introduction">
+        <div class="introduction-account">
+            <h2>　　もりもり</h2>
+            <p>森の力を手に入れ、もりもりっと森田くん。<br>
+                もりたのもりはもりのもり。<br>
+                たももりもりもりももりもり。<br>
+                もりともりとがもりもりもりして<br>
+                もりのもりもりもももりもりもり<br>
+                もりにもりもるもらもらり。<br>
+                もるりりもらもりももりもり。</p></div>
+        <img src="{% static 'img/morimori.jpg' %}">
+    </div>
+    <div class="normal-introduction">
+        <img src="{% static 'img/ane.jpg' %}">
+        <div class="introduction-account">
+            <h2>　　あね</h2>
+            <p>自由落下を極めた男。この男には空気抵抗も<br>
+                摩擦量も通用しない。あらゆる状況下で<br>
+                完璧に自由落下する。<br>
+                最近ある男をストーカーしており、<br>
+                その情報をこのサイトに載せているようだが<br>
+                寛容な小野くんに全てを許されている。</p></div>
+    </div>
+    <div class="reverse-introduction">
+        <div class="introduction-account">
+            <h2>　　そらち</h2>
+            <p>とあるプログラマーで<br>
+                このサイトの創設に一躍買った恩人。<br>
+                今日も彼に感謝しよう。<br>
+                彼に祈りを捧げて。アーメン。<br>
+                Молись Богу.<br>
+                Молю тебя, единственный Бог.<br>
+                Аминь. Ramen. Somen.</p></div>
+        <img src="{% static 'img/sora.jpg' %}">
+    </div>
+    <div class="normal-introduction">
+        <img src="{% static 'img/dai.jpg' %}">
+        <div class="introduction-account">
+            <h2>　　だいすけ</h2>
+            <p>みんな大好きだいすけ。告白の言葉は<br>
+                ｢あなたの事がだいすけ。｣<br>
+                百戦錬磨のだいすけ。今日もだいすけ。<br>
+                最近のだいすけの趣味はお花さんを<br>
+                見ること。お花さんの可愛い姿に<br>
+                だいすけはいつも癒されている。</p></div>
+    </div>
+    <div class="reverse-introduction">
+        <div class="introduction-account">
+            <h2>　　あだっち</h2>
+            <p>大阪府吹田市の日本万国博覧会記念公園に<br>
+                ある｢太陽の塔｣は、彼を元ネタに作られている。<br>
+                Adachi of the Sun.<br>
+                白色のあだちくんは現在を。<br>
+                金色のあだちくんは未来を。<br>
+                黒色はあだちくんは人口の太陽。<br>
+                すなわち原子爆弾を表している。</p></div>
+        <img src="{% static 'img/sun.jpg' %}">
+    </div>
+</div>
+{% endblock %}
