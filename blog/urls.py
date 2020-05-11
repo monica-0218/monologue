@@ -1,5 +1,5 @@
 from django.urls import path
-
+from . import views
 from blog.views import (
     IndexView,
     PostDetailView,
@@ -16,11 +16,14 @@ from blog.views import (
     reply_remove,
     NewsView,
     MemberView,
+    NovelView,
 )
 
 app_name = 'blog'
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
+    path('novel/', NovelView.as_view(), name='novel_all'),
+    path('novel/<int:pk>/', views.novel_detail, name='novel_detail'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('categories/', CategoryListView.as_view(), name='category_list'),
     path('category/<str:category_slug>/',

@@ -158,9 +158,17 @@ class New(models.Model):
     def __str__(self):
         return self.title
 
+class Novel(models.Model):
+    name = models.CharField(max_length=255)
+    created_at = models.DateField(auto_now_add=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
 class Chapter(models.Model):
-  chapter_num = models.IntegerField()
+    title = models.ForeignKey(Novel, on_delete=models.CASCADE)
+    chapter_num = models.IntegerField()
 
 class Story(models.Model):
-  chapter_num = models.ForeignKey(Chapter, on_delete=models.CASCADE)
-  story_num = models.IntegerField()
+    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
+    story_num = models.IntegerField()

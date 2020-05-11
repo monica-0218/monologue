@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object.title }} | {{ block.super }}{% endblock %}
+{% block description %}{{ object.description }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <main class="col-md-8">
+      <h1 class="mb-4">小説一覧</h1>
+      <div>
+        {% for novel in novel_list %}
+        <div>
+            <h2><a href="{% url 'novel_detail' pk=novel.pk %}">{{ novel }}</a></h2>
+        </div>
+        {% endfor %}
+      </div>
+    </main>
+  </div>
+</div>
+{% endblock %}
