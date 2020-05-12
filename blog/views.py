@@ -11,34 +11,57 @@ from blog.forms import CommentForm, ReplyForm
 from blog.models import Post, Category, Tag, Comment, Reply, New, Novel, Chapter, Story
 from django.shortcuts import render
 
-def novel_detail(request, pk):
-    novel = get_object_or_404(Novel, pk=pk)
-    return render(request, 'blog/novel_detail.html', {'novel': novel})
+class LaterView(TemplateView):
+    template_name = 'blog/later.html'
+
 
 class NovelView(TemplateView):
     template_name = 'blog/novel.html'
 
     def get(self, request, *args, **kwargs):
         context = {
-            'novel_list': Novel.objects.all().order_by('-created_at')
+            'novel_list': Novel.objects.all(),
         }
         return self.render_to_response(context)
+
 
 class ChapterView(TemplateView):
     template_name = 'blog/chapter.html'
+
     def get(self, request, *args, **kwargs):
+        novel_pk = self.kwargs['novel_pk']
         context = {
-            'chapter_list': Chapter.objects.all().order_by('-created_at')
+            'novel_pk': novel_pk,
+            'chapter_list': Chapter.objects.filter(novel_id=novel_pk),
         }
         return self.render_to_response(context)
 
+
 class StoryView(TemplateView):
     template_name = 'blog/story.html'
+
     def get(self, request, *args, **kwargs):
+        novel_pk = self.kwargs['novel_pk']
+        chapter_pk = self.kwargs['chapter_pk']
         context = {
-            'story_list': Story.objects.all().order_by('-created_at')
+            'novel_pk': novel_pk,
+            'chapter_pk': chapter_pk,
+            'story_list': Story.objects.filter(chapter_id=chapter_pk),
         }
         return self.render_to_response(context)
+
+
+class Story_DetailView(TemplateView):
+    template_name = 'blog/story_detail.html'
+
+    def get(self, request, *args, **kwargs):
+        story_pk = self.kwargs['story_pk']
+        context = {
+            'story_pk': story_pk,
+            'story_list': Story.objects.filter(id=story_pk),
+        }
+        return self.render_to_response(context)
+
 
 class MemberView(TemplateView):
     template_name = 'blog/member.html'
@@ -68,7 +91,7 @@ class PostDetailView(DetailView):
         print(context['image'])
         return context
 
-    def get_object(self,queryset=None):
+    def get_object(self, queryset=None):
         obj = super().get_object(queryset=queryset)
         if not obj.is_public and not self.request.user.is_authenticated:
             raise Http404

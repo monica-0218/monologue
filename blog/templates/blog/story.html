@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object.title }} | {{ block.super }}{% endblock %}
+{% block description %}{{ object.description }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <main class="col-md-8">
+      <h1 class="mb-4">お話一覧</h1>
+      <div>
+        {% for story in story_list %}
+        <div class="novel-outer">
+          <h4 class="novel-inner"><a href="/novel/{{ novel_pk }}/chapter/{{ chapter_pk }}/story/{{ story.pk }}/">Story<span style="color: #0bd;"> {{ story.story_num }} </span>. {{ story.story_title }}</a></h4>
+        </div>
+        {% endfor %}
+      </div>
+    </main>
+  </div>
+</div>
+{% endblock %}

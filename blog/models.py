@@ -9,6 +9,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from markdown import markdown
 from mdeditor.fields import MDTextField
+from django.core.validators import MinValueValidator
 
 
 class Category(models.Model):
@@ -141,6 +142,7 @@ class Reply(models.Model):
     #         subject, message, from_email, recipient_list)
     #     return send_email
 
+
 # @receiver(post_save, sender=Reply)
 # def comment_reply_receiver(sender, instance, created, **kwargs):
 #     if created:
@@ -158,17 +160,30 @@ class New(models.Model):
     def __str__(self):
         return self.title
 
+
 class Novel(models.Model):
-    name = models.CharField(max_length=255)
-    created_at = models.DateField(auto_now_add=True, blank=True, null=True)
+    novel_title = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.name
+        return self.novel_title
+
 
 class Chapter(models.Model):
-    title = models.ForeignKey(Novel, on_delete=models.CASCADE)
-    chapter_num = models.IntegerField()
+    novel = models.ForeignKey(Novel, on_delete=models.PROTECT)
+    chapter_num = models.PositiveIntegerField()
+    chapter_title = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.novel} - {self.chapter_num} - {self.chapter_title}"
+
 
 class Story(models.Model):
-    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
-    story_num = models.IntegerField()
+    chapter = models.ForeignKey(Chapter, on_delete=models.PROTECT)
+    story_num = models.PositiveIntegerField()
+    story_title = models.CharField(max_length=50)
+    story_text = MDTextField()
+
+    def get_markdown_text_as_html(self):
+        # MarkDown記法で書かれたtextをHTML形式に変換して返す
+        return markdown(self.story_text)
+

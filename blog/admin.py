@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from blog.models import Category, Tag, Post, ContentImage, Comment, Reply, New, Novel, Chapter, Story
 
 
@@ -13,8 +12,13 @@ class PostAdmin(admin.ModelAdmin):
         ContentImageInline,
     ]
 
-class NovelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'created_at')
+
+class ChapterAdmin(admin.ModelAdmin):
+    list_display = ('novel', 'chapter_num', 'chapter_title')
+
+
+class StoryAdmin(admin.ModelAdmin):
+    list_display = ('chapter', 'story_num', 'story_title')
 
 
 admin.site.register(Category)
@@ -23,6 +27,6 @@ admin.site.register(Post, PostAdmin)
 admin.site.register(Comment)
 admin.site.register(Reply)
 admin.site.register(New)
-admin.site.register(Novel, NovelAdmin)
-admin.site.register(Chapter)
-admin.site.register(Story)
+admin.site.register(Novel)
+admin.site.register(Chapter, ChapterAdmin)
+admin.site.register(Story, StoryAdmin)

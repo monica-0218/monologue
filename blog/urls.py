@@ -17,13 +17,20 @@ from blog.views import (
     NewsView,
     MemberView,
     NovelView,
+    ChapterView,
+    StoryView,
+    Story_DetailView,
+    LaterView,
 )
 
 app_name = 'blog'
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
-    path('novel/', NovelView.as_view(), name='novel_all'),
-    path('novel/<int:pk>/', views.novel_detail, name='novel_detail'),
+    path('later/', LaterView.as_view(), name='later'),
+    path('novel/', NovelView.as_view(), name='novel'),
+    path('novel/<int:novel_pk>/chapter/', ChapterView.as_view(), name='chapter'),
+    path('novel/<int:novel_pk>/chapter/<int:chapter_pk>/story/', StoryView.as_view(), name='story'),
+    path('novel/<int:novel_pk>/chapter/<int:chapter_pk>/story/<int:story_pk>/', Story_DetailView.as_view(), name='story_detail'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('categories/', CategoryListView.as_view(), name='category_list'),
     path('category/<str:category_slug>/',

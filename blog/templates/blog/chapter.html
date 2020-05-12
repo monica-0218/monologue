@@ -10,11 +10,9 @@
       <h1 class="mb-4">章一覧</h1>
       <div>
         {% for chapter in chapter_list %}
-          <a href="{% url 'blog:chapter_detail' pk=chapter.pk %}">
-            <div class="novel-outer" style="padding: 30px 0">
-              <h2 class="novel-inner">第{{ chapter.chapter_num }}章</h2>
-            </div>
-          </a>
+        <div class="novel-outer">
+          <h4 class="novel-inner"><a href="/novel/{{ novel_pk }}/chapter/{{ chapter.pk}}/story/">Chapter<span style="color: #0bd;"> {{ chapter.chapter_num }} </span>. {{ chapter.chapter_title }}</a></h4>
+        </div>
         {% endfor %}
       </div>
     </main>

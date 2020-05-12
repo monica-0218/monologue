@@ -7,14 +7,9 @@
 <div class="container">
   <div class="row">
     <main class="col-md-8">
-      <h1 class="mb-4">小説一覧</h1>
-      {% for novel in novel_list %}
-      <div class="novel-outer" style="height: 100px; padding: 30px 0;">
-        <h3 class="novel-inner">
-          <a href="{% url 'blog:chapter' novel_pk=novel.pk %}">{{ novel.novel_title }}</a>
-        </h3>
+      <h1 class="mb-4">話一覧</h1>
+      <div>
       </div>
-      {% endfor %}
     </main>
   </div>
 </div>
